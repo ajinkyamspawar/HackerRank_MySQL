@@ -1,0 +1,22 @@
+
+
+-- select case 
+-- when A + B <= C or A + C <= B or B + C <= A then 'Not A Triangle'
+-- when A = B and B = C then 'Equilateral'
+-- when A = B or B=C or A = C then 'Isosceles'
+-- else 'Scalene'
+-- end 
+-- from TRIANGLES;
+
+
+SELECT
+       CASE 
+           WHEN A + B > C AND B + C > A AND A + C > B THEN 
+               CASE 
+                   WHEN A = B AND B = C THEN 'Equilateral'  -- All sides are equal
+                   WHEN A = B OR B = C OR A = C THEN 'Isosceles'  -- Two sides are equal
+                   ELSE 'Scalene'  -- All sides are different
+               END
+           ELSE 'Not A Triangle'  -- Invalid triangle condition
+       END AS Triangle_Type
+FROM TRIANGLES;
